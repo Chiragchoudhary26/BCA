@@ -1,334 +1,234 @@
-/* ============================================================
-   BCA_HUB — script.js
-   Smooth section slide-up navigation + all interactions
-============================================================ */
-
-/* ─────────────────────────────────────────────
-   1. LOADER
-───────────────────────────────────────────── */
+/* -------- LOADER -------- */
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    const loader = document.getElementById('loader');
-    if (loader) loader.classList.add('hidden');
-  }, 900);
-});
-
-/* ─────────────────────────────────────────────
-   2. FLOATING PARTICLES
-───────────────────────────────────────────── */
-(function spawnParticles() {
-  const container = document.getElementById('particles');
-  if (!container) return;
-  const count = window.innerWidth < 600 ? 14 : 28;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size  = Math.random() * 3 + 1;
-    const left  = Math.random() * 100;
-    const delay = Math.random() * 20;
-    const dur   = Math.random() * 25 + 18;
-    p.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${left}%;
-      animation-delay:${delay}s;
-      animation-duration:${dur}s;
-    `;
-    container.appendChild(p);
-  }
-})();
-
-/* ─────────────────────────────────────────────
-   3. NAVBAR SCROLL SHADOW
-───────────────────────────────────────────── */
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
-
-/* ─────────────────────────────────────────────
-   4. SMOOTH SLIDE-UP NAVIGATION
-   
-   Kaam kaise karta hai:
-   - Navbar links click pe page scroll NAHI karta
-   - Target section smoothly ek "new page" ki tarah
-     upar se aata hai (slide-up animation)
-   - Har section apni jagah scroll position yaad
-     rakhta hai
-───────────────────────────────────────────── */
-
-// Map nav href → actual section id on page
-const NAV_MAP = {
-  'home':        'sec-home',
-  'notes':       'sec-notes',
-  'syllabus':    'sec-syllabus',
-  'programming': 'sec-programming',
-  'papers':      'sec-papers',
-  'career':      'sec-career',
-  'contact':     'sec-contact',
-};
-
-let isAnimating = false; // prevent rapid clicks
-
-/**
- * navigateTo(targetId)
- * Smoothly scrolls the PAGE so the target section
- * slides into view from below → feels like "slide up"
- */
-function navigateTo(targetId) {
-  const sectionId = NAV_MAP[targetId] || targetId;
-  const target = document.getElementById(sectionId);
-  if (!target || isAnimating) return;
-
-  isAnimating = true;
-
-  const navHeight = navbar ? navbar.offsetHeight : 68;
-  const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight;
-
-  // Smooth scroll to that section
-  window.scrollTo({ top: targetTop, behavior: 'smooth' });
-
-  // Update active nav link
-  updateActiveLink(targetId);
-
-  // Allow next navigation after animation settles
-  setTimeout(() => { isAnimating = false; }, 800);
-}
-
-/**
- * updateActiveLink(key)
- * Sets .active on the clicked nav link (desktop + mobile)
- */
-function updateActiveLink(key) {
-  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
-    a.classList.remove('active');
-    const href = a.getAttribute('data-target') || '';
-    if (href === key) a.classList.add('active');
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 900);
   });
-}
-
-// ── Attach click handlers to ALL nav links ──
-function attachNavHandlers() {
-  const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-menu a, .nav-logo');
-  allNavLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = link.getAttribute('data-target') || 'home';
-      navigateTo(target);
-
-      // Close mobile menu if open
-      closeMobileMenu();
-    });
-  });
-
-  // Logo → goes home
-  const logo = document.querySelector('.nav-logo');
-  if (logo) {
-    logo.addEventListener('click', e => {
-      e.preventDefault();
-      navigateTo('home');
-      closeMobileMenu();
-    });
-  }
-}
-
-/* ─────────────────────────────────────────────
-   5. ACTIVE LINK ON SCROLL (IntersectionObserver)
-   While user scrolls manually, active link updates
-───────────────────────────────────────────── */
-function setupScrollSpy() {
-  const sectionEntries = Object.entries(NAV_MAP); // [['home','sec-home'], ...]
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Find which nav key matches this section id
-        const found = sectionEntries.find(([, secId]) => secId === entry.target.id);
-        if (found) updateActiveLink(found[0]);
-      }
-    });
-  }, {
-    rootMargin: `-${(navbar ? navbar.offsetHeight : 68) + 10}px 0px -60% 0px`,
-    threshold: 0
-  });
-
-  sectionEntries.forEach(([, secId]) => {
-    const el = document.getElementById(secId);
-    if (el) observer.observe(el);
-  });
-}
-
-/* ─────────────────────────────────────────────
-   6. HAMBURGER + MOBILE MENU
-───────────────────────────────────────────── */
-const hamburger  = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-
-function openMobileMenu() {
-  if (!mobileMenu || !hamburger) return;
-  hamburger.classList.add('open');
-  mobileMenu.style.display = 'flex';
-  // Force reflow before adding class for transition
-  requestAnimationFrame(() => mobileMenu.classList.add('open'));
-}
-
-function closeMobileMenu() {
-  if (!mobileMenu || !hamburger) return;
-  hamburger.classList.remove('open');
-  mobileMenu.classList.remove('open');
-  setTimeout(() => {
-    if (!mobileMenu.classList.contains('open')) {
-      mobileMenu.style.display = 'none';
+  
+  /* -------- PARTICLES -------- */
+  (function spawnParticles() {
+    const container = document.getElementById('particles');
+    const count = window.innerWidth < 600 ? 14 : 28;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 3 + 1;
+      const left = Math.random() * 100;
+      const delay = Math.random() * 20;
+      const dur   = Math.random() * 25 + 18;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${left}%;
+        animation-delay:${delay}s;
+        animation-duration:${dur}s;
+      `;
+      container.appendChild(p);
     }
-  }, 320);
-}
+  })();
+  
+  /* -------- NAVBAR SCROLL & SCROLL PROGRESS -------- */
+  const navbar = document.getElementById('navbar');
+  const myBar = document.getElementById('myBar');
+  const backToTop = document.getElementById('backToTop');
 
-if (hamburger) {
-  hamburger.addEventListener('click', () => {
-    const isOpen = hamburger.classList.contains('open');
-    isOpen ? closeMobileMenu() : openMobileMenu();
-  });
-}
+  window.addEventListener('scroll', () => {
+    // Navbar Shadow
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+    highlightNav();
 
-// Close mobile menu on outside click
-document.addEventListener('click', e => {
-  if (
-    mobileMenu &&
-    hamburger &&
-    !mobileMenu.contains(e.target) &&
-    !hamburger.contains(e.target) &&
-    mobileMenu.classList.contains('open')
-  ) {
-    closeMobileMenu();
+    // Scroll Progress Bar
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    if(myBar) myBar.style.width = scrolled + "%";
+
+    // Back to top button visibility
+    if (winScroll > 300) {
+        backToTop.style.display = "block";
+    } else {
+        backToTop.style.display = "none";
+    }
+  }, { passive: true });
+  
+  /* -------- BACK TO TOP ACTION -------- */
+  if(backToTop) {
+      backToTop.addEventListener('click', () => {
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      });
   }
-});
 
-/* ─────────────────────────────────────────────
-   7. SCROLL REVEAL ANIMATION
-───────────────────────────────────────────── */
-function setupReveal() {
+  /* -------- HAMBURGER -------- */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    if (open) {
+      mobileMenu.classList.add('open');
+      mobileMenu.style.display = 'flex';
+      requestAnimationFrame(() => {
+        mobileMenu.style.transform = 'translateY(0)';
+        mobileMenu.style.opacity  = '1';
+      });
+    } else {
+      mobileMenu.style.transform = 'translateY(-20px)';
+      mobileMenu.style.opacity  = '0';
+      setTimeout(() => { mobileMenu.style.display = 'none'; mobileMenu.classList.remove('open'); }, 300);
+    }
+  });
+  
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.style.transform = 'translateY(-20px)';
+      mobileMenu.style.opacity  = '0';
+      setTimeout(() => { mobileMenu.style.display = 'none'; mobileMenu.classList.remove('open'); }, 300);
+    });
+  });
+  
+  /* -------- ACTIVE NAV HIGHLIGHT -------- */
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = ['home','features','popular-notes','resources','contact'];
+  function highlightNav() {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      const href = a.getAttribute('href').replace('#','');
+      if (href === current || (current === 'features' && href === 'home')) a.classList.add('active');
+      if (href === current) a.classList.add('active');
+    });
+  }
+  
+  /* -------- SCROLL REVEAL -------- */
   const revealEls = document.querySelectorAll('.reveal');
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObs.unobserve(entry.target);
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => revealObs.observe(el));
-}
-
-/* ─────────────────────────────────────────────
-   8. SEARCH
-───────────────────────────────────────────── */
-function setupSearch() {
-  const searchBtn   = document.getElementById('searchBtn');
-  const searchInput = document.getElementById('searchInput');
-  if (!searchBtn || !searchInput) return;
-
-  searchBtn.addEventListener('click', doSearch);
-  searchInput.addEventListener('keydown', e => {
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObserver.observe(el));
+  
+  /* -------- SEARCH -------- */
+  document.getElementById('searchBtn').addEventListener('click', doSearch);
+  document.getElementById('searchInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') doSearch();
   });
-
   function doSearch() {
-    const q = searchInput.value.trim();
-    if (!q) { showToast('⚠️ Please enter a search term.'); return; }
-    showToast(`🔍 Searching for "${q}"…`);
-    searchInput.value = '';
+    const q = document.getElementById('searchInput').value.trim();
+    if (!q) return showToast('Please enter a search term.');
+    showToast(`Searching for "${q}"…`);
+    document.getElementById('searchInput').value = '';
   }
-}
-
-/* ─────────────────────────────────────────────
-   9. CONTACT FORM
-───────────────────────────────────────────── */
-function setupContactForm() {
-  const btn = document.getElementById('formSubmit');
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    const name  = document.getElementById('fname')?.value.trim();
-    const email = document.getElementById('email')?.value.trim();
-    const msg   = document.getElementById('message')?.value.trim();
-    if (!name || !email || !msg) { showToast('⚠️ Please fill in all required fields.'); return; }
-    if (!/\S+@\S+\.\S+/.test(email)) { showToast('⚠️ Please enter a valid email.'); return; }
+  
+  /* -------- CONTACT FORM -------- */
+  document.getElementById('formSubmit').addEventListener('click', () => {
+    const name  = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const msg   = document.getElementById('message').value.trim();
+    if (!name || !email || !msg) {
+      showToast('Please fill in all required fields.'); return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      showToast('Please enter a valid email address.'); return;
+    }
     showToast('✅ Message sent! We\'ll reply within 24 hours.');
-    ['fname','email','subject','message'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = '';
-    });
+    document.getElementById('fname').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('subject').value = '';
+    document.getElementById('message').value = '';
   });
-}
-
-/* ─────────────────────────────────────────────
-   10. NOTE DOWNLOAD
-───────────────────────────────────────────── */
-function setupNoteDownloads() {
+  
+  /* -------- TOAST -------- */
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+  }
+  
+  /* -------- NOTE DOWNLOAD CLICK -------- */
   document.querySelectorAll('.note-dl').forEach(btn => {
     btn.addEventListener('click', e => {
-      e.preventDefault();
-      showToast('📄 Download started!');
+        // If it's a real link, let it open normally
+        if(btn.getAttribute('href') !== "LINK_PASTE_HERE" && btn.getAttribute('href') !== "#") {
+            showToast('📄 Opening File...');
+            return; 
+        }
+        e.preventDefault();
+        showToast('📄 Please update the Google Drive link!');
     });
   });
-}
-
-/* ─────────────────────────────────────────────
-   11. CARD / RESOURCE LINKS
-───────────────────────────────────────────── */
-function setupCardLinks() {
+  
+  /* -------- RESOURCE / CARD LINKS -------- */
   document.querySelectorAll('.card-link, .res-btn').forEach(btn => {
     btn.addEventListener('click', e => {
-      e.preventDefault();
-      showToast('🚀 Opening resource…');
+        if(btn.getAttribute('href') !== "LINK_PASTE_HERE" && !btn.getAttribute('href').startsWith("#")) {
+            return; // Let real links open normally
+        }
+        if(btn.getAttribute('href') === "LINK_PASTE_HERE"){
+            e.preventDefault();
+            showToast('🚀 Please update the Drive link!');
+        }
     });
   });
-}
 
-/* ─────────────────────────────────────────────
-   12. FOOTER NAV LINKS (scroll to section)
-───────────────────────────────────────────── */
-function setupFooterLinks() {
-  document.querySelectorAll('.footer-links a[data-target]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      navigateTo(a.getAttribute('data-target'));
+  /* -------- FAQ ACCORDION -------- */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      // Close other open faqs
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+            otherItem.classList.remove('active');
+        }
+      });
+      item.classList.toggle('active');
     });
   });
-}
 
-/* ─────────────────────────────────────────────
-   13. TOAST NOTIFICATION
-───────────────────────────────────────────── */
-let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  if (!t) return;
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
-}
+  /* -------- DYNAMIC TYPING EFFECT -------- */
+  const textArray = ["Coding.", "Smarter.", "Faster.", "BCA."];
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typingElement = document.querySelector(".typing-text");
 
-/* ─────────────────────────────────────────────
-   14. HERO CTA BUTTONS
-───────────────────────────────────────────── */
-function setupHeroCTA() {
-  const exploreBtn = document.getElementById('heroExplore');
-  const notesBtn   = document.getElementById('heroNotes');
-  if (exploreBtn) exploreBtn.addEventListener('click', e => { e.preventDefault(); navigateTo('notes'); });
-  if (notesBtn)   notesBtn.addEventListener('click',   e => { e.preventDefault(); navigateTo('notes'); });
-}
+  function typeEffect() {
+      const currentText = textArray[textIndex];
+      
+      if(isDeleting) {
+          typingElement.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+      } else {
+          typingElement.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+      }
 
-/* ─────────────────────────────────────────────
-   15. INIT — Run everything after DOM ready
-───────────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
-  attachNavHandlers();
-  setupScrollSpy();
-  setupReveal();
-  setupSearch();
-  setupContactForm();
-  setupNoteDownloads();
-  setupCardLinks();
-  setupFooterLinks();
-  setupHeroCTA();
-});
+      let typingSpeed = isDeleting ? 50 : 100;
+
+      if (!isDeleting && charIndex === currentText.length) {
+          typingSpeed = 2000; // Pause at end of word
+          isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % textArray.length;
+          typingSpeed = 500; // Pause before typing next word
+      }
+
+      setTimeout(typeEffect, typingSpeed);
+  }
+
+  // Start the typing effect once DOM is loaded
+  if(typingElement) {
+      setTimeout(typeEffect, 1000); // Slight delay before starting
+  }
