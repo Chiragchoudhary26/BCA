@@ -1,179 +1,452 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BCA_HUB – Your Complete BCA Learning Platform</title>
-  <meta name="description" content="BCA_HUB is a complete learning platform for BCA students. Access notes, study materials, practical files, programming resources, previous year papers, syllabus updates, and career guidance." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="BCA_HUB – Your complete learning platform for BCA students. Access notes, study materials, practical files, programming resources, previous year papers, syllabus, and career guidance." />
+  <meta name="keywords" content="BCA, BCA notes, BCA study material, BCA programming, BCA previous year papers, BCA career" />
+  <meta name="author" content="BCA_HUB" />
+  <meta name="theme-color" content="#0f0f0f" />
 
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="BCA_HUB – Your Ultimate BCA Learning Platform" />
+  <meta property="og:description" content="Complete BCA notes, programming resources, previous papers & career guidance." />
+  <meta property="og:type" content="website" />
+
+  <title>BCA_HUB – Your Ultimate BCA Learning Platform</title>
+
+  <!-- ✅ FAVICON – SVG inline as base64 in Charcoal Black + Soft Ivory -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23121212'/%3E%3Crect x='8' y='8' width='84' height='84' rx='16' fill='none' stroke='%238A95A5' stroke-width='2' opacity='0.4'/%3E%3Cpath d='M50 24 L78 38 L50 52 L22 38 Z' fill='%23FAF9F6'/%3E%3Cpath d='M32 43 L32 58 C32 66 68 66 68 58 L68 43 L50 52 Z' fill='%23FAF9F6' opacity='0.95'/%3E%3Ccircle cx='50' cy='52' r='2' fill='%23121212'/%3E%3Cpath d='M70 39 L70 54 L73 54 L73 39 Z' fill='%238A95A5'/%3E%3Ccircle cx='71.5' cy='55' r='2.5' fill='%238A95A5'/%3E%3Ctext x='50' y='82' font-family='Arial Black,sans-serif' font-size='15' font-weight='900' fill='%23FAF9F6' text-anchor='middle' letter-spacing='2'%3EBCA HUB%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23121212'/%3E%3Cpath d='M50 28 L74 40 L50 52 L26 40 Z' fill='%23FAF9F6'/%3E%3Cpath d='M34 44 L34 54 C34 60 66 60 66 54 L66 44 Z' fill='%23FAF9F6'/%3E%3C/svg%3E" />
+
+  <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div id="loader">
-    <div class="loader-logo">BCA_<span>HUB</span></div>
-    <div class="loader-bar"></div>
+  <!-- ============================
+       LOADING SCREEN
+  ============================= -->
+  <div id="loader" class="loader-overlay" role="progressbar" aria-label="Loading BCA_HUB">
+    <div class="loader-content">
+      <div class="loader-logo-3d">
+        <span class="logo-front">BCA_HUB</span>
+        <span class="logo-shadow">BCA_HUB</span>
+      </div>
+      <div class="loader-bar"><div class="loader-progress"></div></div>
+      <p class="loader-text">Loading your learning platform...</p>
+    </div>
   </div>
 
-  <div id="particles"></div>
 
-  <div class="progress-container">
-    <div class="progress-bar" id="myBar"></div>
-  </div>
-  <nav class="navbar" id="navbar">
-    <a href="#" class="nav-logo"><i class="fas fa-graduation-cap"></i>BCA_<span>HUB</span></a>
-    <ul class="nav-links">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#notes">Notes</a></li>
-      <li><a href="#syllabus">Syllabus</a></li>
-      <li><a href="#programming">Programming</a></li>
-      <li><a href="#papers">Previous Papers</a></li>
-      <li><a href="#career">Career</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+
+  <!-- ============================
+       PARTICLES
+  ============================= -->
+  <div class="particles-container" id="particles" aria-hidden="true"></div>
+
+  <!-- ============================
+       NAVIGATION BAR
+  ============================= -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+
+      <!-- 3D Logo -->
+      <a href="#home" class="nav-logo" aria-label="BCA_HUB – Go to homepage">
+        <div class="logo-3d-wrap">
+          <div class="logo-icon-3d" aria-hidden="true">
+            <div class="logo-cube">
+              <div class="cube-face cube-front"><i class="fas fa-graduation-cap"></i></div>
+              <div class="cube-face cube-back"><i class="fas fa-book"></i></div>
+              <div class="cube-face cube-top"></div>
+              <div class="cube-face cube-bottom"></div>
+            </div>
+          </div>
+          <div class="logo-text-3d">
+            <span class="logo-bca">BCA</span><span class="logo-hub">_HUB</span>
+            <span class="logo-tagline">Learn · Grow · Succeed</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" id="navLinks" role="list">
+        <li role="listitem"><a href="#home" class="nav-link active" data-section="home" aria-current="page"><i class="fas fa-home" aria-hidden="true"></i><span>Home</span></a></li>
+        <li role="listitem"><a href="#notes" class="nav-link" data-section="notes"><i class="fas fa-book" aria-hidden="true"></i><span>Notes</span></a></li>
+        <li role="listitem"><a href="#syllabus" class="nav-link" data-section="syllabus"><i class="fas fa-list-alt" aria-hidden="true"></i><span>Syllabus</span></a></li>
+        <li role="listitem"><a href="#programming" class="nav-link" data-section="programming"><i class="fas fa-code" aria-hidden="true"></i><span>Programming</span></a></li>
+        <li role="listitem"><a href="#papers" class="nav-link" data-section="papers"><i class="fas fa-file-alt" aria-hidden="true"></i><span>Papers</span></a></li>
+        <li role="listitem"><a href="#updates" class="nav-link" data-section="updates"><i class="fas fa-bell" aria-hidden="true"></i><span>Updates</span></a></li>
+        <li role="listitem"><a href="#career" class="nav-link" data-section="career"><i class="fas fa-briefcase" aria-hidden="true"></i><span>Career</span></a></li>
+        <li role="listitem"><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope" aria-hidden="true"></i><span>Contact</span></a></li>
+      </ul>
+
+      <div class="nav-right-controls">
+        <!-- Theme Toggle (Extra Feature 3) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+          <i class="fas fa-sun" id="themeIcon"></i>
+        </button>
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
   </nav>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#home">Home</a>
-    <a href="#notes">Notes</a>
-    <a href="#syllabus">Syllabus</a>
-    <a href="#programming">Programming</a>
-    <a href="#papers">Previous Papers</a>
-    <a href="#career">Career</a>
-    <a href="#contact">Contact</a>
-  </div>
+  <!-- Mobile Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
-  <section class="hero" id="home">
-    <div class="hero-inner">
-      <div class="hero-badge"><i class="fas fa-star"></i>India's Premier BCA Learning Hub</div>
-      <h1 class="hero-title">
-        Welcome to <span class="accent">BCA_HUB</span>
-        <span class="line2">Learn <span class="typing-text"></span><span class="cursor">&nbsp;</span></span>
+  <!-- ============================
+       HERO SECTION
+  ============================= -->
+  <section class="hero" id="home" aria-labelledby="heroTitle">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content reveal">
+      <div class="hero-badge" role="status"><span class="badge-dot"></span> Active Platform &bull; Updated June 2026</div>
+
+      <h1 class="hero-title" id="heroTitle">
+        Welcome to<br/>
+        <span class="typing-text-wrap">
+          <span class="typing-text" id="typingHeroText"></span><span class="typing-cursor">|</span>
+        </span>
       </h1>
-      <p class="hero-body">
-        Hello and welcome to <strong>BCA_HUB!</strong> We are glad to have you here. This platform is crafted to help BCA students learn, grow, and stay updated throughout their entire academic journey — from Semester 1 to placement season.
+
+      <p class="hero-subtitle">
+        Hello and welcome to <strong>BCA_HUB!</strong> This platform is created to help BCA students <strong>learn, grow, and stay updated</strong> throughout their academic journey.
       </p>
-      <ul class="hero-list">
-        <li><i class="fas fa-book-open"></i>Important BCA Notes & Study Materials</li>
-        <li><i class="fas fa-code"></i>Practical & Programming Resources</li>
-        <li><i class="fas fa-file-alt"></i>Previous Year Question Papers</li>
-        <li><i class="fas fa-bullhorn"></i>Latest BCA Updates and Syllabus Info</li>
-        <li><i class="fas fa-briefcase"></i>Useful Career Guidance for Students</li>
-      </ul>
-      <div class="hero-cta">
-        <a href="#features" class="btn-primary"><i class="fas fa-rocket"></i>Start Exploring</a>
-        <a href="#notes" class="btn-outline"><i class="fas fa-book"></i>Browse Notes</a>
-      </div>
-    </div>
 
-    <div class="hero-graphic" aria-hidden="true">
-      <div class="hg-card"><i class="fas fa-book"></i><span class="num">500+</span><span>Notes</span></div>
-      <div class="hg-card"><i class="fas fa-code"></i><span class="num">200+</span><span>Programs</span></div>
-      <div class="hg-card"><i class="fas fa-users"></i><span class="num">10K+</span><span>Students</span></div>
-      <div class="hg-card"><i class="fas fa-star"></i><span class="num">4.9★</span><span>Rated</span></div>
-    </div>
-  </section>
+      <div class="hero-features-list">
+        <p class="list-heading"><i class="fas fa-layer-group" aria-hidden="true"></i> What you'll find here:</p>
+        <ul>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Important BCA Notes</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Study Materials</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Practical &amp; Programming Resources</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Exam Preparation Content</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Previous Year Questions</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Latest BCA Updates</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Useful Tips for Students</li>
+        </ul>
+      </div>
 
-  <div class="search-section">
-    <div class="search-wrap reveal">
-      <i class="fas fa-search search-icon-left"></i>
-      <input type="text" id="searchInput" placeholder="Search notes, topics, subjects, papers…" autocomplete="off" />
-      <button class="search-btn" id="searchBtn"><i class="fas fa-arrow-right"></i> Search</button>
-    </div>
-  </div>
+      <p class="hero-desc">Our goal: all essential BCA resources in one place, making learning easier and organized.</p>
+      <p class="hero-tagline" id="heroTagline">🚀 Happy Learning!</p>
 
-  <div class="divider"></div>
+      <div class="hero-buttons">
+        <a href="#features" class="btn btn-primary" id="explore-btn"><i class="fas fa-rocket" aria-hidden="true"></i> Explore Now</a>
+        <a href="#notes" class="btn btn-outline" id="notes-btn"><i class="fas fa-book-open" aria-hidden="true"></i> Browse Notes</a>
+      </div>
 
-  <section id="features">
-    <div class="section-header">
-      <div class="section-eyebrow reveal"><i class="fas fa-layer-group"></i>Resources</div>
-      <h2 class="section-title reveal reveal-delay-1">Everything You Need in <span class="accent">One Place</span></h2>
-      <p class="section-sub reveal reveal-delay-2">From core theory to hands-on coding — every resource a BCA student needs, organized and accessible.</p>
-    </div>
-
-    <div class="cards-grid">
-      <div class="feature-card c1 reveal reveal-delay-1" id="notes">
-        <div class="card-icon"><i class="fas fa-book-open"></i></div>
-        <h3 class="card-title">BCA Notes</h3>
-        <p class="card-desc">Comprehensive, semester-wise notes covering all core and elective subjects. Updated regularly for latest syllabi.</p>
-        <a href="#popular-notes" class="card-link">View Notes <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="feature-card c2 reveal reveal-delay-2" id="programming">
-        <div class="card-icon"><i class="fab fa-python"></i></div>
-        <h3 class="card-title">Python Programming</h3>
-        <p class="card-desc">From syntax basics to data structures, OOP, and real-world projects — a complete Python learning path.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="card-link">Start Learning <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="feature-card c3 reveal reveal-delay-3">
-        <div class="card-icon"><i class="fas fa-terminal"></i></div>
-        <h3 class="card-title">C Programming</h3>
-        <p class="card-desc">Structured C tutorials with programs, algorithms, and memory management concepts for BCA students.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="card-link">Explore C <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="feature-card c4 reveal reveal-delay-4">
-        <div class="card-icon"><i class="fas fa-globe"></i></div>
-        <h3 class="card-title">Web Development</h3>
-        <p class="card-desc">HTML, CSS, JavaScript, and beyond. Build real projects and learn full-stack fundamentals step by step.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="card-link">Get Started <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="feature-card c5 reveal reveal-delay-1" id="syllabus">
-        <div class="card-icon"><i class="fas fa-folder-open"></i></div>
-        <h3 class="card-title">Practical Files</h3>
-        <p class="card-desc">Ready-to-use practical files for lab assignments — formatted, commented, and exam-ready.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="card-link">Download Files <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="feature-card c6 reveal reveal-delay-2" id="papers">
-        <div class="card-icon"><i class="fas fa-file-alt"></i></div>
-        <h3 class="card-title">Previous Year Papers</h3>
-        <p class="card-desc">Solved and unsolved PYQs for every subject and semester. Boost your exam confidence with targeted practice.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="card-link">Access Papers <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="feature-card c7 reveal reveal-delay-3">
-        <div class="card-icon"><i class="fas fa-database"></i></div>
-        <h3 class="card-title">Study Materials</h3>
-        <p class="card-desc">Curated PDFs, reference books, cheat sheets, and mind maps for deep and efficient subject understanding.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="card-link">Browse Materials <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="feature-card c8 reveal reveal-delay-4" id="career">
-        <div class="card-icon"><i class="fas fa-briefcase"></i></div>
-        <h3 class="card-title">Career Guidance</h3>
-        <p class="card-desc">Roadmaps, resume tips, interview preparation, and industry insights to help you land your first tech role.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="card-link">Plan Career <i class="fas fa-arrow-right"></i></a>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section class="about-section">
-    <div class="about-inner">
-      <div class="about-text">
-        <div class="section-eyebrow reveal"><i class="fas fa-info-circle"></i>About</div>
-        <h2 class="section-title reveal reveal-delay-1">Built for <span class="accent">BCA Students</span>, by BCA Students</h2>
-        <p class="reveal reveal-delay-2">BCA_HUB was born from a simple frustration — finding quality study materials for BCA was hard. Resources were scattered, incomplete, or outdated. So we built the platform we always wished existed.</p>
-        <p class="reveal reveal-delay-3">Our goal is to provide all essential BCA-related resources in one organized, beautiful, and free-to-use platform. Whether you're cramming for exams or building your first portfolio project, BCA_HUB has you covered. 🚀</p>
-        <div class="about-stats reveal reveal-delay-4">
-          <div class="stat-box"><div class="num">500+</div><div class="lbl">Study Materials</div></div>
-          <div class="stat-box"><div class="num">6</div><div class="lbl">Semesters Covered</div></div>
-          <div class="stat-box"><div class="num">10K+</div><div class="lbl">Students Helped</div></div>
-          <div class="stat-box"><div class="num">100%</div><div class="lbl">Free to Use</div></div>
+      <!-- Stats -->
+      <div class="hero-stats" role="list" aria-label="Platform statistics">
+        <div class="stat-item" role="listitem">
+          <span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Notes</span>
+        </div>
+        <div class="stat-item" role="listitem">
+          <span class="stat-number" data-target="10000">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Students</span>
+        </div>
+        <div class="stat-item" role="listitem">
+          <span class="stat-number" data-target="8">0</span><span class="stat-suffix"></span>
+          <span class="stat-label">Semesters</span>
+        </div>
+        <div class="stat-item" role="listitem">
+          <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+          <span class="stat-label">Free</span>
         </div>
       </div>
-      <div class="about-visual reveal" aria-hidden="true">
-        <div class="about-ring">
-          <div class="ring-inner">
-            <div class="ring-center">
-              <i class="fas fa-graduation-cap"></i>
-              <span>BCA_HUB</span>
+    </div>
+
+    <a href="#search-section" class="scroll-indicator" aria-label="Scroll to search">
+      <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <!-- ============================
+       EXAM COUNTDOWN (Extra Feature 4)
+  ============================= -->
+  <div class="countdown-strip" id="countdownStrip" role="timer" aria-label="Exam countdown">
+    <div class="container">
+      <div class="countdown-inner">
+        <div class="countdown-label">
+          <i class="fas fa-clock" aria-hidden="true"></i>
+          <span>Next Exam: End Semester <strong>July 15, 2026</strong></span>
+        </div>
+        <div class="countdown-boxes" id="countdownBoxes" aria-live="polite">
+          <div class="count-box"><span id="cd-days">--</span><small>Days</small></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="cd-hours">--</span><small>Hours</small></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="cd-mins">--</span><small>Mins</small></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="cd-secs">--</span><small>Secs</small></div>
+        </div>
+        <a href="#papers" class="countdown-cta">Prepare Now <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       SEARCH SECTION
+  ============================= -->
+  <section class="search-section" id="search-section" aria-labelledby="searchHeading">
+    <div class="container reveal">
+      <h2 class="section-title" id="searchHeading">Find Your <span class="accent-text">Resources</span></h2>
+      <p class="section-subtitle">Search through hundreds of notes, papers, and study materials</p>
+      <div class="search-wrapper">
+        <div class="search-box" id="search-box" role="search">
+          <i class="fas fa-search search-icon" aria-hidden="true"></i>
+          <input type="search" id="searchInput" placeholder="Search notes, subjects, topics..." aria-label="Search resources" autocomplete="off" />
+          <button class="search-btn" id="searchBtn" aria-label="Search"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+        <div class="search-tags" role="list" aria-label="Quick search suggestions">
+          <button class="tag" role="listitem" onclick="fillSearch('BCA Notes')">BCA Notes</button>
+          <button class="tag" role="listitem" onclick="fillSearch('Python')">Python</button>
+          <button class="tag" role="listitem" onclick="fillSearch('C Programming')">C Programming</button>
+          <button class="tag" role="listitem" onclick="fillSearch('Web Development')">Web Dev</button>
+          <button class="tag" role="listitem" onclick="fillSearch('Previous Papers')">Prev Papers</button>
+          <button class="tag" role="listitem" onclick="fillSearch('Syllabus')">Syllabus</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FEATURE CARDS
+  ============================= -->
+  <section class="features-section" id="features" aria-labelledby="featuresHeading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">EXPLORE</span>
+        <h2 class="section-title" id="featuresHeading">All Resources in <span class="accent-text">One Place</span></h2>
+        <p class="section-subtitle">Everything you need for your BCA journey — organized and easy to access</p>
+      </div>
+
+      <div class="cards-grid" id="notes">
+
+        <!-- ==========================================
+             CARD 1: BCA Notes
+             🔗 GOOGLE DRIVE LINK: Paste your Google Drive
+             link for BCA Notes Folder in href below
+        =========================================== -->
+        <article class="card reveal" tabindex="0" aria-label="BCA Notes">
+          <div class="card-ribbon">Popular</div>
+          <div class="card-icon-wrap color-blue">
+            <div class="card-icon"><i class="fas fa-book-open" aria-hidden="true"></i></div>
+          </div>
+          <h3 class="card-title">BCA Notes</h3>
+          <p class="card-desc">Comprehensive semester-wise notes for all BCA subjects with diagrams and examples.</p>
+          <div class="card-tags">
+            <span>Sem 1–6</span><span>All Subjects</span><span>PDF Ready</span>
+          </div>
+          <!-- 🔗 GOOGLE DRIVE LINK — BCA NOTES: Paste your link below in href -->
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="card-btn color-blue">
+            <i class="fab fa-google-drive" aria-hidden="true"></i> Open Drive Folder
+          </a>
+          <div class="drive-hint"><i class="fas fa-info-circle" aria-hidden="true"></i> Google Drive Link</div>
+        </article>
+
+        <!-- ==========================================
+             CARD 2: Python Programming
+             🔗 GOOGLE DRIVE LINK: Paste Python Notes/Files
+             link in href below
+        =========================================== -->
+        <article class="card reveal" tabindex="0" aria-label="Python Programming" id="programming">
+          <div class="card-icon-wrap color-cyan">
+            <div class="card-icon"><i class="fab fa-python" aria-hidden="true"></i></div>
+          </div>
+          <h3 class="card-title">Python Programming</h3>
+          <p class="card-desc">Basics to advanced Python — OOP, data structures, projects and exercises included.</p>
+          <div class="card-tags">
+            <span>Beginner</span><span>Advanced</span><span>Projects</span>
+          </div>
+          <!-- 🔗 GOOGLE DRIVE LINK — PYTHON NOTES: Paste your link below in href -->
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="card-btn color-cyan">
+            <i class="fab fa-google-drive" aria-hidden="true"></i> Open Drive Folder
+          </a>
+          <div class="drive-hint"><i class="fas fa-info-circle" aria-hidden="true"></i> Google Drive Link</div>
+        </article>
+
+        <!-- ==========================================
+             CARD 3: C Programming
+             🔗 GOOGLE DRIVE LINK: Paste C Programming
+             notes link in href below
+        =========================================== -->
+        <article class="card reveal" tabindex="0" aria-label="C Programming">
+          <div class="card-icon-wrap color-purple">
+            <div class="card-icon"><i class="fas fa-terminal" aria-hidden="true"></i></div>
+          </div>
+          <h3 class="card-title">C Programming</h3>
+          <p class="card-desc">Master C from scratch — pointers, arrays, functions, structures, file handling and more.</p>
+          <div class="card-tags">
+            <span>Basics</span><span>Pointers</span><span>DSA</span>
+          </div>
+          <!-- 🔗 GOOGLE DRIVE LINK — C PROGRAMMING: Paste your link below in href -->
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="card-btn color-purple">
+            <i class="fab fa-google-drive" aria-hidden="true"></i> Open Drive Folder
+          </a>
+          <div class="drive-hint"><i class="fas fa-info-circle" aria-hidden="true"></i> Google Drive Link</div>
+        </article>
+
+        <!-- ==========================================
+             CARD 4: Web Development
+             🔗 GOOGLE DRIVE LINK: Paste Web Dev
+             notes link in href below
+        =========================================== -->
+        <article class="card reveal" tabindex="0" aria-label="Web Development">
+          <div class="card-icon-wrap color-orange">
+            <div class="card-icon"><i class="fas fa-globe" aria-hidden="true"></i></div>
+          </div>
+          <h3 class="card-title">Web Development</h3>
+          <p class="card-desc">HTML, CSS, JavaScript, Bootstrap, PHP and MySQL. Build real-world projects.</p>
+          <div class="card-tags">
+            <span>HTML/CSS</span><span>JavaScript</span><span>PHP</span>
+          </div>
+          <!-- 🔗 GOOGLE DRIVE LINK — WEB DEVELOPMENT: Paste your link below in href -->
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="card-btn color-orange">
+            <i class="fab fa-google-drive" aria-hidden="true"></i> Open Drive Folder
+          </a>
+          <div class="drive-hint"><i class="fas fa-info-circle" aria-hidden="true"></i> Google Drive Link</div>
+        </article>
+
+        <!-- ==========================================
+             CARD 5: Practical Files
+             🔗 GOOGLE DRIVE LINK: Paste Practical Files
+             folder link in href below
+        =========================================== -->
+        <article class="card reveal" tabindex="0" aria-label="Practical Files">
+          <div class="card-icon-wrap color-green">
+            <div class="card-icon"><i class="fas fa-laptop-code" aria-hidden="true"></i></div>
+          </div>
+          <h3 class="card-title">Practical Files</h3>
+          <p class="card-desc">Ready-to-submit practical files for all semesters. Proper format, indexed and documented.</p>
+          <div class="card-tags">
+            <span>Lab Files</span><span>All Sem</span><span>Printable</span>
+          </div>
+          <!-- 🔗 GOOGLE DRIVE LINK — PRACTICAL FILES: Paste your link below in href -->
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="card-btn color-green">
+            <i class="fab fa-google-drive" aria-hidden="true"></i> Open Drive Folder
+          </a>
+          <div class="drive-hint"><i class="fas fa-info-circle" aria-hidden="true"></i> Google Drive Link</div>
+        </article>
+
+        <!-- ==========================================
+             CARD 6: Previous Year Papers
+             🔗 GOOGLE DRIVE LINK: Paste Previous Papers
+             folder link in href below
+        =========================================== -->
+        <article class="card reveal" tabindex="0" aria-label="Previous Year Papers" id="papers">
+          <div class="card-icon-wrap color-red">
+            <div class="card-icon"><i class="fas fa-file-alt" aria-hidden="true"></i></div>
+          </div>
+          <h3 class="card-title">Previous Year Papers</h3>
+          <p class="card-desc">Last 10 years question papers with answers. Subject-wise, semester-wise for exam prep.</p>
+          <div class="card-tags">
+            <span>10 Years</span><span>With Answers</span><span>All Subjects</span>
+          </div>
+          <!-- 🔗 GOOGLE DRIVE LINK — PREVIOUS PAPERS: Paste your link below in href -->
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="card-btn color-red">
+            <i class="fab fa-google-drive" aria-hidden="true"></i> Open Drive Folder
+          </a>
+          <div class="drive-hint"><i class="fas fa-info-circle" aria-hidden="true"></i> Google Drive Link</div>
+        </article>
+
+        <!-- ==========================================
+             CARD 7: Study Materials
+             🔗 GOOGLE DRIVE LINK: Paste Study Materials
+             folder link in href below
+        =========================================== -->
+        <article class="card reveal" tabindex="0" aria-label="Study Materials">
+          <div class="card-icon-wrap color-teal">
+            <div class="card-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+          </div>
+          <h3 class="card-title">Study Materials</h3>
+          <p class="card-desc">E-books, reference books, cheat sheets, mind maps and quick revision guides.</p>
+          <div class="card-tags">
+            <span>E-Books</span><span>Cheat Sheets</span><span>Mind Maps</span>
+          </div>
+          <!-- 🔗 GOOGLE DRIVE LINK — STUDY MATERIALS: Paste your link below in href -->
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="card-btn color-teal">
+            <i class="fab fa-google-drive" aria-hidden="true"></i> Open Drive Folder
+          </a>
+          <div class="drive-hint"><i class="fas fa-info-circle" aria-hidden="true"></i> Google Drive Link</div>
+        </article>
+
+        <!-- ==========================================
+             CARD 8: Career Guidance
+             🔗 GOOGLE DRIVE LINK: Paste Career Resources
+             folder link in href below
+        =========================================== -->
+        <article class="card reveal" tabindex="0" aria-label="Career Guidance" id="career">
+          <div class="card-icon-wrap color-gold">
+            <div class="card-icon"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
+          </div>
+          <h3 class="card-title">Career Guidance</h3>
+          <p class="card-desc">Resume tips, interview prep, job portals, MCA guidance and certification roadmaps.</p>
+          <div class="card-tags">
+            <span>Resume</span><span>Interview</span><span>Roadmaps</span>
+          </div>
+          <!-- 🔗 GOOGLE DRIVE LINK — CAREER GUIDANCE: Paste your link below in href -->
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="card-btn color-gold">
+            <i class="fab fa-google-drive" aria-hidden="true"></i> Open Drive Folder
+          </a>
+          <div class="drive-hint"><i class="fas fa-info-circle" aria-hidden="true"></i> Google Drive Link</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       ABOUT SECTION
+  ============================= -->
+  <section class="about-section" id="about" aria-labelledby="aboutHeading">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="section-badge">ABOUT US</span>
+          <h2 class="section-title" id="aboutHeading">About <span class="accent-text">BCA_HUB</span></h2>
+          <p>BCA_HUB was created with one mission: to make quality BCA education accessible to every student, regardless of background or resources.</p>
+          <p>We understand the challenges BCA students face — from finding reliable notes to preparing for exams. That's why we've built a platform that brings <strong>everything together in one place.</strong></p>
+          <p>Whether you're a first-year student or a final-year student preparing for placements, BCA_HUB has something for you.</p>
+          <div class="about-features">
+            <div class="about-feature"><i class="fas fa-check" aria-hidden="true"></i><span>100% Free Resources</span></div>
+            <div class="about-feature"><i class="fas fa-check" aria-hidden="true"></i><span>Updated Regularly</span></div>
+            <div class="about-feature"><i class="fas fa-check" aria-hidden="true"></i><span>Student Community</span></div>
+            <div class="about-feature"><i class="fas fa-check" aria-hidden="true"></i><span>Expert Verified Content</span></div>
+          </div>
+          <a href="#contact" class="btn btn-primary" id="join-btn"><i class="fas fa-users" aria-hidden="true"></i> Join Our Community</a>
+        </div>
+
+        <div class="about-visual reveal">
+          <div class="about-card-stack">
+            <div class="about-info-card glass-card">
+              <div class="about-icon color-blue"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+              <div><h4>BCA Specialized</h4><p>Built exclusively for BCA students</p></div>
+            </div>
+            <div class="about-info-card glass-card">
+              <div class="about-icon color-cyan"><i class="fas fa-sync-alt" aria-hidden="true"></i></div>
+              <div><h4>Continuously Updated</h4><p>New content added every week</p></div>
+            </div>
+            <div class="about-info-card glass-card">
+              <div class="about-icon color-purple"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+              <div><h4>Quality Assured</h4><p>All content is reviewed by experts</p></div>
+            </div>
+            <div class="about-info-card glass-card">
+              <div class="about-icon color-green"><i class="fas fa-mobile-alt" aria-hidden="true"></i></div>
+              <div><h4>Mobile Friendly</h4><p>Study on any device, anywhere</p></div>
             </div>
           </div>
         </div>
@@ -181,292 +454,404 @@
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <section>
-    <div class="section-header">
-      <div class="section-eyebrow reveal"><i class="fas fa-bell"></i>News</div>
-      <h2 class="section-title reveal reveal-delay-1">Latest <span class="accent">Updates</span></h2>
-      <p class="section-sub reveal reveal-delay-2">Stay in the loop with fresh notes, exam schedules, and platform announcements.</p>
-    </div>
-
-    <div class="updates-grid">
-      <div class="update-card reveal reveal-delay-1">
-        <div class="update-dot"><i class="fas fa-file-alt"></i></div>
-        <div class="update-body">
-          <div class="update-date">June 2026</div>
-          <div class="update-title">Semester 5 Notes Now Available</div>
-          <div class="update-desc">Complete subject-wise notes for Sem 5 including DBMS, Software Engineering, and Java have been uploaded.</div>
-        </div>
-      </div>
-      <div class="update-card reveal reveal-delay-2">
-        <div class="update-dot"><i class="fas fa-code"></i></div>
-        <div class="update-body">
-          <div class="update-date">May 2026</div>
-          <div class="update-title">Python DSA Series Launched</div>
-          <div class="update-desc">A new comprehensive Data Structures & Algorithms series in Python has been added to the programming section.</div>
-        </div>
-      </div>
-      <div class="update-card reveal reveal-delay-3">
-        <div class="update-dot"><i class="fas fa-question-circle"></i></div>
-        <div class="update-body">
-          <div class="update-date">April 2026</div>
-          <div class="update-title">2025 PYQs Uploaded</div>
-          <div class="update-desc">Previous year papers for the 2025 exam session with detailed solutions are now available in the Papers section.</div>
-        </div>
-      </div>
-      <div class="update-card reveal reveal-delay-4">
-        <div class="update-dot"><i class="fas fa-briefcase"></i></div>
-        <div class="update-body">
-          <div class="update-date">March 2026</div>
-          <div class="update-title">Career Section Revamped</div>
-          <div class="update-desc">New roadmaps for AI/ML, Full-Stack Dev, and Cloud Computing careers for BCA graduates have been added.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="popular-notes">
-    <div class="section-header">
-      <div class="section-eyebrow reveal"><i class="fas fa-fire"></i>Popular</div>
-      <h2 class="section-title reveal reveal-delay-1">Most Downloaded <span class="accent">Notes</span></h2>
-      <p class="section-sub reveal reveal-delay-2">Top picks by students across all semesters — tried, tested, and trusted.</p>
-    </div>
-
-    <div class="notes-grid">
-      <div class="note-card reveal reveal-delay-1">
-        <div class="note-tag tag-sem1"><i class="fas fa-bookmark"></i>Sem 1</div>
-        <div class="note-title">Introduction to Computers & IT</div>
-        <div class="note-meta"><i class="fas fa-download"></i>3.2K downloads <i class="fas fa-star" style="color:#ffd200"></i>4.8</div>
-        <a href="LINK_PASTE_HERE" target="_blank" class="note-dl"><i class="fas fa-download"></i>Download PDF</a>
-      </div>
-      <div class="note-card reveal reveal-delay-2">
-        <div class="note-tag tag-sem2"><i class="fas fa-bookmark"></i>Sem 2</div>
-        <div class="note-title">Data Structures Using C</div>
-        <div class="note-meta"><i class="fas fa-download"></i>4.5K downloads <i class="fas fa-star" style="color:#ffd200"></i>4.9</div>
-        <a href="LINK_PASTE_HERE" target="_blank" class="note-dl"><i class="fas fa-download"></i>Download PDF</a>
-      </div>
-      <div class="note-card reveal reveal-delay-3">
-        <div class="note-tag tag-sem3"><i class="fas fa-bookmark"></i>Sem 3</div>
-        <div class="note-title">Object Oriented Programming</div>
-        <div class="note-meta"><i class="fas fa-download"></i>3.8K downloads <i class="fas fa-star" style="color:#ffd200"></i>4.7</div>
-        <a href="LINK_PASTE_HERE" target="_blank" class="note-dl"><i class="fas fa-download"></i>Download PDF</a>
-      </div>
-      <div class="note-card reveal reveal-delay-4">
-        <div class="note-tag tag-sem4"><i class="fas fa-bookmark"></i>Sem 4</div>
-        <div class="note-title">Database Management Systems</div>
-        <div class="note-meta"><i class="fas fa-download"></i>5.1K downloads <i class="fas fa-star" style="color:#ffd200"></i>4.9</div>
-        <a href="LINK_PASTE_HERE" target="_blank" class="note-dl"><i class="fas fa-download"></i>Download PDF</a>
-      </div>
-      <div class="note-card reveal reveal-delay-1">
-        <div class="note-tag tag-sem5"><i class="fas fa-bookmark"></i>Sem 5</div>
-        <div class="note-title">Software Engineering</div>
-        <div class="note-meta"><i class="fas fa-download"></i>2.9K downloads <i class="fas fa-star" style="color:#ffd200"></i>4.6</div>
-        <a href="LINK_PASTE_HERE" target="_blank" class="note-dl"><i class="fas fa-download"></i>Download PDF</a>
-      </div>
-      <div class="note-card reveal reveal-delay-2">
-        <div class="note-tag tag-sem6"><i class="fas fa-bookmark"></i>Sem 6</div>
-        <div class="note-title">Computer Networks</div>
-        <div class="note-meta"><i class="fas fa-download"></i>2.4K downloads <i class="fas fa-star" style="color:#ffd200"></i>4.8</div>
-        <a href="LINK_PASTE_HERE" target="_blank" class="note-dl"><i class="fas fa-download"></i>Download PDF</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="resources">
-    <div class="section-header">
-      <div class="section-eyebrow reveal"><i class="fas fa-toolbox"></i>Resources</div>
-      <h2 class="section-title reveal reveal-delay-1">Student <span class="accent">Resource Centre</span></h2>
-      <p class="section-sub reveal reveal-delay-2">Tools, guides, and materials hand-picked to accelerate your academic and professional growth.</p>
-    </div>
-
-    <div class="resources-grid">
-      <div class="resource-card reveal reveal-delay-1">
-        <div class="res-icon" style="background:rgba(0,212,255,.12);color:#00d4ff"><i class="fas fa-list-check"></i></div>
-        <h3>Semester-wise Syllabus</h3>
-        <p>Detailed syllabus breakdown for all 6 semesters. Know exactly what's in scope for every exam.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="res-btn">View Syllabus <i class="fas fa-external-link-alt"></i></a>
-      </div>
-      <div class="resource-card reveal reveal-delay-2">
-        <div class="res-icon" style="background:rgba(160,90,255,.12);color:#a05aff"><i class="fab fa-java"></i></div>
-        <h3>Java Programming Guide</h3>
-        <p>Complete BCA-aligned Java notes with OOP concepts, exception handling, and practical programs.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="res-btn">Access Guide <i class="fas fa-external-link-alt"></i></a>
-      </div>
-      <div class="resource-card reveal reveal-delay-3">
-        <div class="res-icon" style="background:rgba(255,210,0,.12);color:#ffd200"><i class="fas fa-chart-bar"></i></div>
-        <h3>DBMS Complete Notes</h3>
-        <p>SQL queries, ER diagrams, normalization, and transaction management — all in one resource.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="res-btn">Open Notes <i class="fas fa-external-link-alt"></i></a>
-      </div>
-      <div class="resource-card reveal reveal-delay-4">
-        <div class="res-icon" style="background:rgba(80,210,120,.12);color:#50d278"><i class="fas fa-network-wired"></i></div>
-        <h3>Computer Networks</h3>
-        <p>OSI model, TCP/IP stack, protocols, subnetting, and more — explained simply with diagrams.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="res-btn">Start Reading <i class="fas fa-external-link-alt"></i></a>
-      </div>
-      <div class="resource-card reveal reveal-delay-1">
-        <div class="res-icon" style="background:rgba(255,80,120,.12);color:#ff5078"><i class="fas fa-shield-halved"></i></div>
-        <h3>Cyber Security Basics</h3>
-        <p>Fundamentals of information security, cryptography, and ethical hacking concepts for BCA Sem 6.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="res-btn">Learn More <i class="fas fa-external-link-alt"></i></a>
-      </div>
-      <div class="resource-card reveal reveal-delay-2">
-        <div class="res-icon" style="background:rgba(100,180,255,.12);color:#64b4ff"><i class="fas fa-brain"></i></div>
-        <h3>Aptitude & Placement Prep</h3>
-        <p>Quantitative aptitude, logical reasoning, and verbal ability practice sets for campus placements.</p>
-        <a href="LINK_PASTE_HERE" target="_blank" class="res-btn">Practice Now <i class="fas fa-external-link-alt"></i></a>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="faq">
-    <div class="section-header">
-      <div class="section-eyebrow reveal"><i class="fas fa-question-circle"></i>FAQ</div>
-      <h2 class="section-title reveal reveal-delay-1">Frequently Asked <span class="accent">Questions</span></h2>
-    </div>
-    <div class="faq-container reveal reveal-delay-2">
-      <div class="faq-item">
-        <div class="faq-question">Are all the notes on BCA_HUB totally free? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer">Yes! Everything on BCA_HUB is 100% free for all students. Our goal is to make quality education accessible to everyone.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">How can I contribute my own notes? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer">We'd love your contribution! You can use the contact form below and select "Contribute Notes" in the subject, or email us your PDFs directly.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Are these notes valid for all universities? <i class="fas fa-chevron-down"></i></div>
-        <div class="faq-answer">Our notes cover standard UGC/AICTE prescribed BCA syllabus topics, so they are highly relevant for almost all Indian universities.</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="contact">
-    <div class="section-header">
-      <div class="section-eyebrow reveal"><i class="fas fa-envelope"></i>Contact</div>
-      <h2 class="section-title reveal reveal-delay-1">Get in <span class="accent">Touch</span></h2>
-      <p class="section-sub reveal reveal-delay-2">Have a question, suggestion, or want to contribute? We'd love to hear from you.</p>
-    </div>
-
-    <div class="contact-inner">
-      <div class="contact-info">
-        <p class="reveal">Whether you have feedback, want to contribute notes, or need help finding a resource — our team is happy to help.</p>
-        <div class="contact-item reveal reveal-delay-1">
-          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
-          <div class="ci-text"><h4>Email Us</h4><p>support@bcahub.in</p></div>
-        </div>
-        <div class="contact-item reveal reveal-delay-2">
-          <div class="ci-icon"><i class="fab fa-telegram"></i></div>
-          <div class="ci-text"><h4>Telegram Channel</h4><p>@BCA_HUB_Official</p></div>
-        </div>
-        <div class="contact-item reveal reveal-delay-3" style="cursor: pointer;" onclick="window.open('https://wa.me/YOUR_PHONE_NUMBER_HERE', '_blank')">
-          <div class="ci-icon" style="color: #25D366; border-color: rgba(37, 211, 102, 0.3); background: rgba(37, 211, 102, 0.1);"><i class="fab fa-whatsapp"></i></div>
-          <div class="ci-text"><h4>WhatsApp Chat</h4><p>Message us directly</p></div>
-        </div>
-        <div class="contact-item reveal reveal-delay-4">
-          <div class="ci-icon"><i class="fas fa-clock"></i></div>
-          <div class="ci-text"><h4>Response Time</h4><p>Usually within 24 hours</p></div>
-        </div>
+  <!-- ============================
+       LATEST UPDATES
+  ============================= -->
+  <section class="updates-section" id="updates" aria-labelledby="updatesHeading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">LATEST</span>
+        <h2 class="section-title" id="updatesHeading">Latest <span class="accent-text">Updates</span></h2>
+        <p class="section-subtitle">Stay up to date with the newest content and announcements</p>
       </div>
 
-      <div class="contact-form reveal reveal-delay-2">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" placeholder="Your name" />
+      <div class="updates-grid">
+        <article class="update-card reveal" tabindex="0">
+          <div class="update-badge new">NEW</div>
+          <div class="update-icon color-blue"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+          <div class="update-content">
+            <span class="update-date"><i class="fas fa-calendar" aria-hidden="true"></i> June 2026</span>
+            <h4>BCA Semester 6 Notes Released</h4>
+            <p>Complete notes for all subjects of BCA 6th semester now available for download.</p>
+            <!-- 🔗 GOOGLE DRIVE LINK — SEM 6 NOTES UPDATE: Paste link below -->
+            <a href="link past hear" target="_blank" rel="noopener noreferrer" class="update-link">
+              <i class="fab fa-google-drive" aria-hidden="true"></i> View on Drive <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </a>
           </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="you@email.com" />
+        </article>
+
+        <article class="update-card reveal" tabindex="0">
+          <div class="update-badge hot">HOT</div>
+          <div class="update-icon color-cyan"><i class="fab fa-python" aria-hidden="true"></i></div>
+          <div class="update-content">
+            <span class="update-date"><i class="fas fa-calendar" aria-hidden="true"></i> June 2026</span>
+            <h4>Python Advanced Series Added</h4>
+            <p>New advanced Python tutorials: Django, Flask, ML basics and API development.</p>
+            <!-- 🔗 GOOGLE DRIVE LINK — PYTHON ADVANCED UPDATE: Paste link below -->
+            <a href="link past hear" target="_blank" rel="noopener noreferrer" class="update-link">
+              <i class="fab fa-google-drive" aria-hidden="true"></i> View on Drive <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </a>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <select id="subject">
-            <option value="">Select a topic</option>
-            <option>Study Material Request</option>
-            <option>Report a Bug</option>
-            <option>Contribute Notes</option>
-            <option>Career Guidance</option>
-            <option>General Inquiry</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="Write your message here…"></textarea>
-        </div>
-        <button class="form-submit" id="formSubmit">
-          <i class="fas fa-paper-plane"></i>Send Message
-        </button>
+        </article>
+
+        <article class="update-card reveal" tabindex="0">
+          <div class="update-badge">UPDATE</div>
+          <div class="update-icon color-purple"><i class="fas fa-clipboard-list" aria-hidden="true"></i></div>
+          <div class="update-content">
+            <span class="update-date"><i class="fas fa-calendar" aria-hidden="true"></i> May 2026</span>
+            <h4>Updated BCA Syllabus 2026</h4>
+            <p>Latest university-approved BCA syllabus uploaded with subject-wise breakdown.</p>
+            <!-- 🔗 GOOGLE DRIVE LINK — BCA SYLLABUS 2026: Paste link below -->
+            <a href="link past hear" target="_blank" rel="noopener noreferrer" class="update-link">
+              <i class="fab fa-google-drive" aria-hidden="true"></i> View on Drive <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="update-card reveal" tabindex="0">
+          <div class="update-badge exam">EXAM</div>
+          <div class="update-icon color-green"><i class="fas fa-question-circle" aria-hidden="true"></i></div>
+          <div class="update-content">
+            <span class="update-date"><i class="fas fa-calendar" aria-hidden="true"></i> May 2026</span>
+            <h4>Previous Year Papers (2016–2026)</h4>
+            <p>10 years of question papers with solutions for all semesters uploaded.</p>
+            <!-- 🔗 GOOGLE DRIVE LINK — PREVIOUS PAPERS UPDATE: Paste link below -->
+            <a href="link past hear" target="_blank" rel="noopener noreferrer" class="update-link">
+              <i class="fab fa-google-drive" aria-hidden="true"></i> View on Drive <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo"><i class="fas fa-graduation-cap" style="color:var(--cyan);margin-right:8px"></i>BCA_<span>HUB</span></div>
-        <p>Your complete one-stop platform for BCA study materials, notes, programming resources, and career guidance. Learn smarter, not harder.</p>
-        <div class="footer-socials">
-          <a href="#" class="social-btn" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-          <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="#" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  <!-- ============================
+       POPULAR NOTES (Syllabus section)
+  ============================= -->
+  <section class="popular-section" id="syllabus" aria-labelledby="popularHeading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">TRENDING</span>
+        <h2 class="section-title" id="popularHeading">Popular <span class="accent-text">Notes</span></h2>
+        <p class="section-subtitle">Most accessed study materials by BCA students</p>
+      </div>
+
+      <div class="popular-grid">
+
+        <!-- 🔗 GOOGLE DRIVE LINK — DSA NOTES: Replace href below -->
+        <div class="popular-card reveal" tabindex="0">
+          <div class="popular-rank">01</div>
+          <div class="popular-info">
+            <h4>Data Structures &amp; Algorithms</h4>
+            <p>Semester 3 · Complete Notes</p>
+            <div class="popular-meta">
+              <span><i class="fas fa-download" aria-hidden="true"></i> 4.2K</span>
+              <span><i class="fas fa-star" aria-hidden="true"></i> 4.9</span>
+            </div>
+          </div>
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="popular-btn" aria-label="Download DSA Notes from Google Drive">
+            <i class="fab fa-google-drive" aria-hidden="true"></i>
+          </a>
         </div>
-      </div>
 
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="#home"><i class="fas fa-chevron-right"></i>Home</a></li>
-          <li><a href="#notes"><i class="fas fa-chevron-right"></i>BCA Notes</a></li>
-          <li><a href="#syllabus"><i class="fas fa-chevron-right"></i>Syllabus</a></li>
-          <li><a href="#papers"><i class="fas fa-chevron-right"></i>Previous Papers</a></li>
-          <li><a href="#career"><i class="fas fa-chevron-right"></i>Career Guidance</a></li>
-        </ul>
-      </div>
+        <!-- 🔗 GOOGLE DRIVE LINK — DBMS NOTES: Replace href below -->
+        <div class="popular-card reveal" tabindex="0">
+          <div class="popular-rank color-cyan">02</div>
+          <div class="popular-info">
+            <h4>Database Management System</h4>
+            <p>Semester 4 · With SQL Practical</p>
+            <div class="popular-meta">
+              <span><i class="fas fa-download" aria-hidden="true"></i> 3.8K</span>
+              <span><i class="fas fa-star" aria-hidden="true"></i> 4.8</span>
+            </div>
+          </div>
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="popular-btn" aria-label="Download DBMS Notes from Google Drive">
+            <i class="fab fa-google-drive" aria-hidden="true"></i>
+          </a>
+        </div>
 
-      <div class="footer-col">
-        <h4>Programming</h4>
-        <ul class="footer-links">
-          <li><a href="LINK_PASTE_HERE" target="_blank"><i class="fas fa-chevron-right"></i>C Programming</a></li>
-          <li><a href="LINK_PASTE_HERE" target="_blank"><i class="fas fa-chevron-right"></i>C++ OOP</a></li>
-          <li><a href="LINK_PASTE_HERE" target="_blank"><i class="fas fa-chevron-right"></i>Python</a></li>
-          <li><a href="LINK_PASTE_HERE" target="_blank"><i class="fas fa-chevron-right"></i>Java</a></li>
-          <li><a href="LINK_PASTE_HERE" target="_blank"><i class="fas fa-chevron-right"></i>Web Development</a></li>
-        </ul>
-      </div>
+        <!-- 🔗 GOOGLE DRIVE LINK — OS NOTES: Replace href below -->
+        <div class="popular-card reveal" tabindex="0">
+          <div class="popular-rank color-purple">03</div>
+          <div class="popular-info">
+            <h4>Operating System Concepts</h4>
+            <p>Semester 4 · Full Theory + Diagrams</p>
+            <div class="popular-meta">
+              <span><i class="fas fa-download" aria-hidden="true"></i> 3.1K</span>
+              <span><i class="fas fa-star" aria-hidden="true"></i> 4.7</span>
+            </div>
+          </div>
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="popular-btn" aria-label="Download OS Notes from Google Drive">
+            <i class="fab fa-google-drive" aria-hidden="true"></i>
+          </a>
+        </div>
 
-      <div class="footer-col">
-        <h4>Contact Info</h4>
-        <ul class="footer-links">
-          <li><a href="mailto:support@bcahub.in"><i class="fas fa-envelope"></i>support@bcahub.in</a></li>
-          <li><a href="#"><i class="fab fa-telegram"></i>@BCA_HUB_Official</a></li>
-          <li><a href="#"><i class="fab fa-instagram"></i>@bca_hub_official</a></li>
-          <li><a href="#"><i class="fas fa-clock"></i>Mon–Sat, 9 AM–7 PM</a></li>
-        </ul>
+        <!-- 🔗 GOOGLE DRIVE LINK — CN NOTES: Replace href below -->
+        <div class="popular-card reveal" tabindex="0">
+          <div class="popular-rank color-orange">04</div>
+          <div class="popular-info">
+            <h4>Computer Networks</h4>
+            <p>Semester 5 · TCP/IP, OSI Model</p>
+            <div class="popular-meta">
+              <span><i class="fas fa-download" aria-hidden="true"></i> 2.9K</span>
+              <span><i class="fas fa-star" aria-hidden="true"></i> 4.6</span>
+            </div>
+          </div>
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="popular-btn" aria-label="Download CN Notes from Google Drive">
+            <i class="fab fa-google-drive" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <!-- 🔗 GOOGLE DRIVE LINK — SE NOTES: Replace href below -->
+        <div class="popular-card reveal" tabindex="0">
+          <div class="popular-rank color-green">05</div>
+          <div class="popular-info">
+            <h4>Software Engineering</h4>
+            <p>Semester 5 · SDLC, Models, UML</p>
+            <div class="popular-meta">
+              <span><i class="fas fa-download" aria-hidden="true"></i> 2.5K</span>
+              <span><i class="fas fa-star" aria-hidden="true"></i> 4.5</span>
+            </div>
+          </div>
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="popular-btn" aria-label="Download SE Notes from Google Drive">
+            <i class="fab fa-google-drive" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <!-- 🔗 GOOGLE DRIVE LINK — WEB TECH NOTES: Replace href below -->
+        <div class="popular-card reveal" tabindex="0">
+          <div class="popular-rank color-teal">06</div>
+          <div class="popular-info">
+            <h4>Web Technology (PHP &amp; MySQL)</h4>
+            <p>Semester 6 · Complete with Projects</p>
+            <div class="popular-meta">
+              <span><i class="fas fa-download" aria-hidden="true"></i> 2.3K</span>
+              <span><i class="fas fa-star" aria-hidden="true"></i> 4.4</span>
+            </div>
+          </div>
+          <a href="link past hear" target="_blank" rel="noopener noreferrer" class="popular-btn" aria-label="Download Web Tech Notes from Google Drive">
+            <i class="fab fa-google-drive" aria-hidden="true"></i>
+          </a>
+        </div>
+
       </div>
     </div>
+  </section>
 
-    <div class="footer-bottom">
-      <p>© 2026 <span>BCA_HUB</span>. All rights reserved. Built with ❤️ for BCA Students.</p>
-      <p>Made in India 🇮🇳 | Free & Open for All Students</p>
+  <!-- ============================
+       STUDENT RESOURCES
+  ============================= -->
+  <section class="resources-section" id="resources" aria-labelledby="resourcesHeading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">RESOURCES</span>
+        <h2 class="section-title" id="resourcesHeading">Student <span class="accent-text">Resources</span></h2>
+        <p class="section-subtitle">Quick access to everything you need for success</p>
+      </div>
+      <div class="resources-grid">
+        <div class="resource-item reveal" tabindex="0"><div class="resource-icon color-blue"><i class="fas fa-calendar-alt" aria-hidden="true"></i></div><h4>Academic Calendar</h4><p>Important dates, exam schedules, and semester timelines</p></div>
+        <div class="resource-item reveal" tabindex="0"><div class="resource-icon color-cyan"><i class="fas fa-video" aria-hidden="true"></i></div><h4>Video Lectures</h4><p>Curated YouTube playlists and tutorials for all subjects</p></div>
+        <div class="resource-item reveal" tabindex="0"><div class="resource-icon color-purple"><i class="fas fa-users" aria-hidden="true"></i></div><h4>Study Groups</h4><p>Join Telegram and WhatsApp groups for collaborative learning</p></div>
+        <div class="resource-item reveal" tabindex="0"><div class="resource-icon color-orange"><i class="fas fa-certificate" aria-hidden="true"></i></div><h4>Certifications</h4><p>Free certifications from Google, Coursera, and NPTEL</p></div>
+        <div class="resource-item reveal" tabindex="0"><div class="resource-icon color-green"><i class="fas fa-tools" aria-hidden="true"></i></div><h4>Dev Tools</h4><p>Software setup guides, VS Code, and IDE tutorials</p></div>
+        <div class="resource-item reveal" tabindex="0"><div class="resource-icon color-red"><i class="fas fa-lightbulb" aria-hidden="true"></i></div><h4>Interview Tips</h4><p>HR rounds, technical interviews, aptitude preparation</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       TESTIMONIALS
+  ============================= -->
+  <section class="testimonials-section" id="testimonials" aria-labelledby="testimonialsHeading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">REVIEWS</span>
+        <h2 class="section-title" id="testimonialsHeading">What <span class="accent-text">Students Say</span></h2>
+        <p class="section-subtitle">Hear from BCA students who have benefited from BCA_HUB</p>
+      </div>
+      <div class="testimonials-slider" role="region" aria-label="Student testimonials">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-card" role="article">
+            <div class="testimonial-quote" aria-hidden="true"><i class="fas fa-quote-left"></i></div>
+            <p>"BCA_HUB saved me during exam season. The notes are well-organized and easy to understand. I scored 87% in my 5th semester!"</p>
+            <div class="testimonial-author"><div class="author-avatar">R</div><div><strong>Rahul Sharma</strong><span>BCA 5th Semester, Delhi</span></div></div>
+            <div class="testimonial-stars" aria-label="5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          </div>
+          <div class="testimonial-card" role="article">
+            <div class="testimonial-quote" aria-hidden="true"><i class="fas fa-quote-left"></i></div>
+            <p>"The Python programming section is incredible. I was a complete beginner but now I can build web apps. Practical files are super helpful!"</p>
+            <div class="testimonial-author"><div class="author-avatar color-cyan">P</div><div><strong>Priya Verma</strong><span>BCA 3rd Semester, Mumbai</span></div></div>
+            <div class="testimonial-stars" aria-label="5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          </div>
+          <div class="testimonial-card" role="article">
+            <div class="testimonial-quote" aria-hidden="true"><i class="fas fa-quote-left"></i></div>
+            <p>"Previous year papers with solutions — this feature alone is worth everything. Cleared my backlogs because of BCA_HUB. Thank you!"</p>
+            <div class="testimonial-author"><div class="author-avatar color-purple">A</div><div><strong>Arjun Singh</strong><span>BCA Final Year, Bangalore</span></div></div>
+            <div class="testimonial-stars" aria-label="4.5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+          </div>
+          <div class="testimonial-card" role="article">
+            <div class="testimonial-quote" aria-hidden="true"><i class="fas fa-quote-left"></i></div>
+            <p>"Career guidance helped me land my first internship. The resume templates and interview tips are absolutely top-notch!"</p>
+            <div class="testimonial-author"><div class="author-avatar color-orange">S</div><div><strong>Sneha Patel</strong><span>BCA Graduate, Pune</span></div></div>
+            <div class="testimonial-stars" aria-label="5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          </div>
+        </div>
+        <div class="slider-controls">
+          <button class="slider-btn" id="prevBtn" aria-label="Previous testimonial"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+          <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Testimonial navigation"></div>
+          <button class="slider-btn" id="nextBtn" aria-label="Next testimonial"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CONTACT SECTION
+  ============================= -->
+  <section class="contact-section" id="contact" aria-labelledby="contactHeading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">CONTACT</span>
+        <h2 class="section-title" id="contactHeading">Get In <span class="accent-text">Touch</span></h2>
+        <p class="section-subtitle">Have a question or suggestion? We'd love to hear from you!</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Contact Information</h3>
+          <div class="contact-item"><div class="contact-icon color-blue"><i class="fas fa-envelope" aria-hidden="true"></i></div><div><strong>Email Us</strong><p>bcahub.official@gmail.com</p></div></div>
+          <div class="contact-item"><div class="contact-icon color-cyan"><i class="fab fa-telegram" aria-hidden="true"></i></div><div><strong>Telegram Channel</strong><p>@BCA_HUB_Official</p></div></div>
+          <div class="contact-item"><div class="contact-icon color-purple"><i class="fab fa-instagram" aria-hidden="true"></i></div><div><strong>Instagram</strong><p>@bcahub.official</p></div></div>
+          <div class="contact-item"><div class="contact-icon color-green"><i class="fab fa-whatsapp" aria-hidden="true"></i></div><div><strong>WhatsApp Group</strong><p>Join our study community</p></div></div>
+        </div>
+        <div class="contact-form-wrap reveal" id="contactForm">
+          <form id="contactFormEl" novalidate aria-label="Contact form">
+            <div class="form-group">
+              <label for="contactName">Full Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="contactName" placeholder="Your full name" required autocomplete="name" aria-required="true"/>
+              <span class="form-error" id="nameError" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email Address <span aria-hidden="true">*</span></label>
+              <input type="email" id="contactEmail" placeholder="your@email.com" required autocomplete="email" aria-required="true"/>
+              <span class="form-error" id="emailError" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <select id="contactSubject">
+                <option value="">Select a topic...</option>
+                <option value="notes">Notes &amp; Study Material</option>
+                <option value="programming">Programming Help</option>
+                <option value="career">Career Guidance</option>
+                <option value="suggestion">Suggestion</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message <span aria-hidden="true">*</span></label>
+              <textarea id="contactMessage" rows="5" placeholder="Write your message here..." required aria-required="true"></textarea>
+              <span class="form-error" id="msgError" role="alert"></span>
+            </div>
+            <button type="submit" class="btn btn-primary full-width" id="submitBtn">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
+            </button>
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+              <i class="fas fa-check-circle" aria-hidden="true"></i> Message sent! We'll get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FOOTER
+  ============================= -->
+  <footer class="footer" id="footer" role="contentinfo">
+    <div class="footer-glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">BCA<span>_HUB</span></div>
+          <p>Your ultimate learning companion for BCA studies. All resources in one organized platform.</p>
+          <div class="social-icons" role="list" aria-label="Social media links">
+            <a href="#" class="social-icon" role="listitem" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+            <a href="#" class="social-icon" role="listitem" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="social-icon" role="listitem" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="#" class="social-icon" role="listitem" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+            <a href="#" class="social-icon" role="listitem" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home"><i class="fas fa-chevron-right" aria-hidden="true"></i> Home</a></li>
+            <li><a href="#notes"><i class="fas fa-chevron-right" aria-hidden="true"></i> BCA Notes</a></li>
+            <li><a href="#syllabus"><i class="fas fa-chevron-right" aria-hidden="true"></i> Syllabus</a></li>
+            <li><a href="#programming"><i class="fas fa-chevron-right" aria-hidden="true"></i> Programming</a></li>
+            <li><a href="#papers"><i class="fas fa-chevron-right" aria-hidden="true"></i> Previous Papers</a></li>
+            <li><a href="#career"><i class="fas fa-chevron-right" aria-hidden="true"></i> Career</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#"><i class="fas fa-chevron-right" aria-hidden="true"></i> Python Notes</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right" aria-hidden="true"></i> C Programming</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right" aria-hidden="true"></i> Web Development</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right" aria-hidden="true"></i> Practical Files</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right" aria-hidden="true"></i> Study Materials</a></li>
+            <li><a href="#contact"><i class="fas fa-chevron-right" aria-hidden="true"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact Info</h4>
+          <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><span>bcahub.official@gmail.com</span></div>
+          <div class="footer-contact-item"><i class="fab fa-telegram" aria-hidden="true"></i><span>@BCA_HUB_Official</span></div>
+          <div class="footer-contact-item"><i class="fab fa-instagram" aria-hidden="true"></i><span>@bcahub.official</span></div>
+          <div class="footer-newsletter">
+            <p>Stay updated — subscribe!</p>
+            <div class="newsletter-form">
+              <input type="email" id="newsletterEmail" placeholder="Your email..." aria-label="Newsletter email subscription" />
+              <button id="newsletterBtn" aria-label="Subscribe to newsletter"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright &copy; <span id="year"></span> <strong>BCA_HUB</strong>. All Rights Reserved. Made with <i class="fas fa-heart" aria-label="love" style="color:#e86c6c"></i> for BCA Students.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Disclaimer</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <div class="toast" id="toast"></div>
+  <!-- ============================
+       FLOATING QUICK ACTIONS (Extra Feature 2)
+  ============================= -->
+  <div class="fab-menu" id="fabMenu" role="complementary" aria-label="Quick actions">
+    <button class="fab-main" id="fabMain" aria-label="Quick actions menu" aria-expanded="false">
+      <i class="fas fa-bolt" id="fabIcon" aria-hidden="true"></i>
+    </button>
+    <div class="fab-items" id="fabItems" aria-hidden="true">
+      <a href="https://t.me/BCA_HUB_Official" target="_blank" rel="noopener noreferrer" class="fab-item fab-telegram" aria-label="Join Telegram" title="Telegram Channel">
+        <i class="fab fa-telegram" aria-hidden="true"></i><span class="fab-tooltip">Telegram</span>
+      </a>
+      <a href="https://wa.me/?text=Join+BCA_HUB" target="_blank" rel="noopener noreferrer" class="fab-item fab-whatsapp" aria-label="Join WhatsApp" title="WhatsApp Group">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i><span class="fab-tooltip">WhatsApp</span>
+      </a>
+      <button class="fab-item fab-share" id="shareBtn" aria-label="Share BCA_HUB" title="Share this site">
+        <i class="fas fa-share-alt" aria-hidden="true"></i><span class="fab-tooltip">Share</span>
+      </button>
+    </div>
+  </div>
 
-  <button id="backToTop" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
 
   <script src="script.js"></script>
 </body>
